@@ -40,17 +40,23 @@ public class LinkedList {
             }
         }
     }
-    public void popLast() {
-        if (head == null)
-            System.out.println("No elements to delete..");
-        else if (head.ref == null)
-            head = null;
+    public void search(Object searchElement) {
+        if (head.data == searchElement)
+            System.out.println(searchElement + " is Found");
         else {
             Node temp = head;
-            while (temp.ref.ref != null) {
+            boolean isFound = false;
+            while (temp != null) {
+                if (temp.data == searchElement) {
+                    isFound = true;
+                    break;
+                }
                 temp = temp.ref;
             }
-            temp.ref = null;
+            if (isFound == true)
+                System.out.println(searchElement + " is Found");
+            else
+                System.out.println(searchElement + " is not found..");
         }
     }
     public static void main(String args[]) {
@@ -61,7 +67,6 @@ public class LinkedList {
         call.display();
         call.append(70);
         call.display();
-        call.popLast();
-        call.display();
+        call.search(30);
     }
 }
