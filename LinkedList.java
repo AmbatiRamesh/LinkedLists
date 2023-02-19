@@ -4,12 +4,12 @@ public class LinkedList {
     Node head;
     class Node {
         Node ref;
-        Object data;
-        Node(Object data) {
+        int data;
+        Node(int data) {
             this.data = data;
         }
     }
-    public void append(Object data) {
+    public void append(int data) {
 
         Node newNode = new Node(data);
         if (head == null) {
@@ -25,6 +25,7 @@ public class LinkedList {
         }
     }
     public void display() {
+
         if (head == null) {
             System.out.println("linked list is empty");
         } else if (head.ref == null) {
@@ -41,7 +42,7 @@ public class LinkedList {
             }
         }
     }
-    public void search(Object searchElement) {
+    public void search(int searchElement) {
         if (head.data == searchElement)
             System.out.println(searchElement + " is Found");
         else {
@@ -59,8 +60,9 @@ public class LinkedList {
             else
                 System.out.println(searchElement + " is not found..");
         }
+
     }
-    void push_at( int position,Object data) {
+    void push_at( int position,int data) {
         Node newNode = new Node(data);
         newNode.ref = null;
         if(position < 1) {
@@ -84,16 +86,25 @@ public class LinkedList {
             }
         }
     }
-    public void deleteParticularPosition(Object data) {
-        int index = 0;
-        Node left = head;
-        Node right = left.ref;
-        while (right.data != data) {
-            left = left.ref;
-            right = right.ref;
-            index++;
+    public void sortList() {
+        Node currNode = head, index = null;
+        int temp;
+        if (head == null) {
+            return;
+        } else {
+            while (currNode != null) {
+                index = currNode.ref;
+                while (index != null) {
+                    if (currNode.data >index.data) {
+                        temp = currNode.data;
+                        currNode.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.ref;
+                }
+                currNode = currNode.ref;
+            }
         }
-        left.ref = right.ref;
     }
     public static void main(String args[]) {
         LinkedList call = new LinkedList();
@@ -106,7 +117,7 @@ public class LinkedList {
         call.push_at(3,40);
         call.display();
         call.search(40);
-        call.deleteParticularPosition(40);
+        call.sortList();
         call.display();
     }
 }
