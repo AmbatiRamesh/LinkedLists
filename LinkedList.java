@@ -10,6 +10,7 @@ public class LinkedList {
         }
     }
     public void append(Object data) {
+
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -59,6 +60,30 @@ public class LinkedList {
                 System.out.println(searchElement + " is not found..");
         }
     }
+    void push_at( int position,Object data) {
+        Node newNode = new Node(data);
+        newNode.ref = null;
+        if(position < 1) {
+            System.out.print("\nposition should be >= 1.");
+        } else if (position == 1) {
+            newNode.ref = head;
+            head = newNode;
+        } else {
+            Node temp = new Node(data);
+            temp = head;
+            for(int i = 1; i < position-1; i++) {
+                if(temp != null) {
+                    temp = temp.ref;
+                }
+            }
+            if(temp != null) {
+                newNode.ref = temp.ref;
+                temp.ref = newNode;
+            } else {
+                System.out.print("\nThe previous node is null.");
+            }
+        }
+    }
     public static void main(String args[]) {
         LinkedList call = new LinkedList();
         call.append(56);
@@ -68,5 +93,7 @@ public class LinkedList {
         call.append(70);
         call.display();
         call.search(30);
+        call.push_at(3,40);
+        call.display();
     }
 }
