@@ -40,16 +40,17 @@ public class LinkedList {
             }
         }
     }
-    public void deleteFirst()
-    {
-        if(head == null)
-            System.out.println("No elements to delete...");
-        else if(head.ref == null)
+    public void popLast() {
+        if (head == null)
+            System.out.println("No elements to delete..");
+        else if (head.ref == null)
             head = null;
-        else
-        {
-            Node temp=head.ref;
-            head=temp;
+        else {
+            Node temp = head;
+            while (temp.ref.ref != null) {
+                temp = temp.ref;
+            }
+            temp.ref = null;
         }
     }
     public static void main(String args[]) {
@@ -60,7 +61,7 @@ public class LinkedList {
         call.display();
         call.append(70);
         call.display();
-        call.deleteFirst();
+        call.popLast();
         call.display();
     }
 }
